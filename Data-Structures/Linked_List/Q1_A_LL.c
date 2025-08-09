@@ -88,9 +88,38 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int insertSortedLL(LinkedList *ll, int item)
-{
-	/* add your code here */
+int insertSortedLL(LinkedList *ll, int item) {
+	if (ll == NULL) return -1;
+
+	ListNode *new, *pre = NULL, *cur = ll->head;
+	int idx = 0;
+
+	// 중복 검사 및 위치 탐색
+    while (cur != NULL && cur->item < item) {
+        pre = cur;
+        cur = cur->next;
+        idx++;
+    }
+
+    // 중복 요소가 이미 존재하는 경우
+    if (cur != NULL && cur->item == item) return -1;
+
+    // 새 노드 생성
+    new = malloc(sizeof(ListNode));
+    if (new == NULL) return -1; // malloc 실패 처리
+
+    new->item = item;
+    new->next = cur;
+
+    if (pre == NULL) {
+        // 리스트 맨 앞 삽입 (head 앞에)
+        ll->head = new;
+    } else {
+        pre->next = new;
+    }
+	
+	ll->size++;
+	return idx;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

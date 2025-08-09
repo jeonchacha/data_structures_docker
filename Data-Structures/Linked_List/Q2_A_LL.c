@@ -8,7 +8,6 @@ Purpose: Implementing the required functions for Question 2 */
 
 #include <stdio.h>
 #include <stdlib.h>
-
 //////////////////////////////////////////////////////////////////////////////////
 
 typedef struct _listnode
@@ -103,7 +102,38 @@ int main()
 
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
-    /* add your code here */
+	if (!ll1 || !ll2) return;
+
+	int count = ll1->size;
+	int idx = 1;
+	while (count-- > 0)
+	{
+		if (!ll2->head) break;
+		int val = ll2->head->item;
+		if (insertNode(ll1, idx, val) != 0) break;
+		if (removeNode(ll2, 0) != 0) break;
+		idx += 2;	// 다음 alternate 위치
+	}
+
+	// malloc/free 없이 O(1) 링크 조작
+	// // ll1에 노드가 하나도 없으면 삽입할 "대상 노드 뒤"가 없으므로 아무 것도 하지 않음.
+    // ListNode *p1 = ll1->head;
+    // while (p1 && ll2->head) {
+    //     // ll2의 맨 앞 노드를 떼고
+    //     ListNode *take = ll2->head;
+    //     ll2->head = take->next;
+
+    //     // ll1의 p1 뒤에 끼워 넣기
+    //     take->next = p1->next;
+    //     p1->next = take;
+
+    //     // 사이즈 갱신 (요구 함수 시그니처와 동일한 구조 유지)
+    //     ll1->size++;
+    //     ll2->size--;
+
+    //     // 다음 alternate 위치: 방금 끼운 노드(take)의 다음 칸
+    //     p1 = take->next;
+    // }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
