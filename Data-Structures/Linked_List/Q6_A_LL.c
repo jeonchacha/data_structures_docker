@@ -8,7 +8,7 @@ Purpose: Implementing the required functions for Question 6 */
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <limits.h>
 //////////////////////////////////////////////////////////////////////////////////
 
 typedef struct _listnode
@@ -88,7 +88,35 @@ int main()
 
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+	if (!ptrHead) return -1;
+
+	ListNode *prev = NULL;
+	ListNode *cur = *ptrHead;
+
+	int maxVal = INT_MIN;
+	ListNode *maxNode = NULL;
+	ListNode *prevMax = NULL;	// 지금까지 본 maxNode의 이전 노드
+	
+	while (cur) {
+		if (maxVal < cur->item) {
+			maxVal = cur->item;
+			maxNode = cur;
+			prevMax = prev;
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+
+	// 이미 맨 앞이면 끝
+	if (maxNode == *ptrHead) return 0;
+
+	// 원래 자리에서 분리
+	if (prevMax) prevMax->next = maxNode->next;
+
+	maxNode->next = *ptrHead;
+	*ptrHead = maxNode;
+
+	return 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
