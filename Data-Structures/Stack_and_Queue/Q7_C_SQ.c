@@ -8,6 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MIN_INT -1000
 
@@ -104,7 +105,7 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+
 }
 
 ////////////////////////////////////////////////////////////

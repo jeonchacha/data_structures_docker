@@ -106,15 +106,15 @@ void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, Linke
 	if (!ll || ll->size < 1) return;
 	
 	ListNode *cur = ll->head;
-	int frontIdx = (ll->size + 1) / 2;
-	int backIdx = ll->size - frontIdx;
+	int frontCnt = (ll->size + 1) / 2;
+	int backCnt = ll->size - frontCnt;
 	
-	for (int i = 0; i < frontIdx; i++) {
+	for (int i = 0; i < frontCnt; i++) {
 		insertNode(resultFrontList, i, cur->item);
 		cur = cur->next;
 	}
 
-	for (int i = 0; i < backIdx; i++) {
+	for (int i = 0; i < backCnt; i++) {
 		insertNode(resultBackList, i, cur->item);
 		cur = cur->next;
 	}

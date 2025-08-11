@@ -23,7 +23,6 @@ typedef struct _linkedlist
 	ListNode *head;
 } LinkedList;	// You should not change the definition of LinkedList
 
-
 typedef struct _queue
 {
 	LinkedList ll;
@@ -116,12 +115,29 @@ int main()
 
 void createQueueFromLinkedList(LinkedList *ll, Queue *q)
 {
-	/* add your code here */
+	if (!ll || !q) return;
+
+	ListNode *temp = ll->head;
+	while (temp)
+	{
+		enqueue(q, temp->item);
+		temp = temp->next;
+	}
+	
 }
 
 void removeOddValues(Queue *q)
 {
-	/* add your code here */
+	if (!q) return;
+
+	int cnt = q->ll.size;
+
+	while (cnt -- > 0)
+	{
+		int item = dequeue(q);
+		if (item == -1) break;		
+		if (item % 2 == 0) enqueue(q, item);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////////
