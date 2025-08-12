@@ -91,27 +91,27 @@ void moveOddItemsToBack(LinkedList *ll)
 	while (tail->next) tail = tail->next;
 
 	ListNode *cur = ll->head;
-	ListNode *pre = NULL;
+	ListNode *prev = NULL;
 	
-	int count = ll->size;	// 원래 노드 개수만큼만 순회 (고정횟수)
-	while (count-- > 0) 
+	int cnt = ll->size;	// 노드 개수만큼만 순회
+	while (cnt-- > 0) 
 	{
 		if (cur->item % 2 != 0) 
 		{
 			ListNode *nextNode = cur->next;
 
-			if (pre) pre->next = cur->next;
+			if (prev) prev->next = cur->next;
 			else ll->head = cur->next;	// 첫 노드가 홀수인 경우
 
 			tail->next = cur;
 			cur->next = NULL;	// 사이클 방지
 			tail = cur;		// 새로운 tail	
 			
-			cur = nextNode;		// 다음 노드로
+			cur = nextNode;
 		} 
 		else 
 		{	// 짝수면 그냥 이동
-			pre = cur;
+			prev = cur;
 			cur = cur->next;
 		}
 	}
