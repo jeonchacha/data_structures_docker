@@ -8,7 +8,7 @@ Purpose: Implementing the required functions for Question 7 */
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <limits.h>
 //////////////////////////////////////////////////////////////////////////////////
 
 typedef struct _btnode
@@ -102,7 +102,14 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+    if (!node) return INT_MAX;
+
+    int left = smallestValue(node->left);
+    int right = smallestValue(node->right);
+
+    int minChild = (left < right) ? left : right;
+    
+    return (node->item < minChild) ? node->item : minChild;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
