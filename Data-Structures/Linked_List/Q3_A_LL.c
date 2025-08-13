@@ -99,10 +99,10 @@ void moveOddItemsToBack(LinkedList *ll)
 		if (cur->item % 2 != 0) 
 		{
 			ListNode *nextNode = cur->next;
-
+			
 			if (prev) prev->next = cur->next;
 			else ll->head = cur->next;	// 첫 노드가 홀수인 경우
-
+			
 			tail->next = cur;
 			cur->next = NULL;	// 사이클 방지
 			tail = cur;		// 새로운 tail	
